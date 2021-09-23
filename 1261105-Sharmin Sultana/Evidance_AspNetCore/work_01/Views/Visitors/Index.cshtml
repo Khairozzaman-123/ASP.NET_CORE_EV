@@ -1,0 +1,35 @@
+﻿@model IEnumerable<work_01.ViewModels.VisitorsRetriveVm>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col">
+        <img class="container" src="~/SliderImages/Image1.jpg" height="200" />
+        
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="card shadow-lg mt-2">
+            <div class="card-header shadow">
+                <h2 class="float-left">Visitor List</h2>
+                <form asp-controller="Visitors" asp-action="Index" method="post" class="d-inline float-left">
+                    <div class="input-group col-xl-12">
+                        <input type="text" class="form-control" placeholder="Search Visitor" name="usertext" />
+                        <div class="input-group-btn">
+                            <button class="btn btn-info" type="submit"><i class="fa fa-search"></i> Search</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="d-flex justify-content-end">
+                    <a asp-action="Create" asp-controller="Visitors" class="btn btn-success"><i class="fa fa-plus"></i></a>
+                </div>
+            </div>
+            <div class="card-body">
+                <partial name="_VisitorList" />
+            </div>
+        </div>
+    </div>
+</div>

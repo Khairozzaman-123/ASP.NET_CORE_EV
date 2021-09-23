@@ -1,0 +1,48 @@
+﻿@model IEnumerable<CoreEV4.Models.Hospitals>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="card card card-default scrollspy" id="validation">
+    <div class="border-radius-10 card card-content col s12 m6 l6 offset-m3 offset-l3 pl-0 pr-0">
+        <h4 class="border-radius-10 header gradient-45deg-indigo-blue padding-5 medium" style="color: rgba(255, 255, 255, 0.901961);margin:0">
+            <span class="">হাসপাতালের তালিকা</span>
+            <a asp-action="Index" class="btn btn-floating btn-medium pink pulse right"><i class="material-icons">add_circle</i></a>
+        </h4>
+        <div>
+            <table class="table">
+                <thead class="blue-grey">
+                    <tr>
+                        <th class="white-text">
+                            @Html.DisplayNameFor(model => model.hName)
+                        </th>
+                        <th class="white-text">
+                            @Html.DisplayNameFor(model => model.hAddress)
+                        </th>
+                        <th class="white-text">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.hName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.hAddress)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.hId">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.hId">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.hId">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

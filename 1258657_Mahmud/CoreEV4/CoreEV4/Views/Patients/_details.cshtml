@@ -1,0 +1,65 @@
+﻿@model CoreEV4.Models.Patients
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <h4>Patient Details</h4>
+        <hr class="customize-devider" />
+        <div>
+            <h4>Patients</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.pName)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.pName)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.bGroup)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.bGroup)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Dob)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Dob)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Address)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Address)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.pImage)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.pImage)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.pStatus)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.pStatus)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Hospitals)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Hospitals.hId)
+                </dd>
+            </dl>
+        </div>
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model.pId">Edit</a> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+</div>

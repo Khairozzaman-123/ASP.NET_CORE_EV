@@ -1,0 +1,39 @@
+﻿@model CoreEV4.Models.Hospitals
+
+@{
+    ViewData["Title"] = "Edit hospital";
+}
+
+<div class="card card card-default scrollspy" id="validation">
+    <div class="border-radius-10 card card-content col s12 m6 l6 offset-m3 offset-l3 pl-0 pr-0">
+        <h4 class="border-radius-10 header gradient-45deg-indigo-blue padding-5 medium" style="color: rgba(255, 255, 255, 0.901961);margin:0">
+            <span class="">নতুন হাসপাতাল এড করুন</span>
+            <a asp-controller="Hospitals" asp-action="Index" class="btn btn-floating btn-medium pink pulse right"><i class="material-icons">arrow_back</i></a>
+        </h4>
+        <form asp-action="Edit" class="pt-8 pb-6 col s12 m10 l10 offset-m1 offset-l1">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="hId" />
+            <div class="form-group">
+                <label asp-for="hName" class="control-label"></label>
+                <input asp-for="hName" class="form-control" />
+                <span asp-validation-for="hName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="hAddress" class="control-label"></label>
+                <input asp-for="hAddress" class="form-control" />
+                <span asp-validation-for="hAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section script {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

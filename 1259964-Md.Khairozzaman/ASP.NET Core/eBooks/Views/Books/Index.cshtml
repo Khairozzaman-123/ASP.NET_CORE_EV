@@ -1,0 +1,64 @@
+﻿@model IEnumerable<eBooks.Models.Book>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<div class="container">
+    <p class="d-flex justify-content-end">
+        <a asp-action="Create" class="btn btn-success">Create New</a>
+    </p>
+    <table class="table table-hover table-striped table-sm">
+        <thead class="bg-primary">
+            <tr>
+                <th class="text-light">
+                    @Html.DisplayNameFor(model => model.BookName)
+                </th>
+                <th class="text-light">
+                    @Html.DisplayNameFor(model => model.PublishDate)
+                </th>
+                <th class="text-light">
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th class="text-light">
+                    @Html.DisplayNameFor(model => model.CoverImage)
+                </th>
+                <th class="text-light">
+                    @Html.DisplayNameFor(model => model.Publisher)
+                </th>
+                <th class="text-light">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BookName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PublishDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @*@{
+                                var b64 = Convert.ToBase64String(item.CoverImage);
+                                var imgsrc = String.Format("data:image/jpg;base64,{0}", b64);
+                            }*@
+                        <img src="~/Images/@item.CoverImage" width="40" height="40" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Publisher.PublisherName)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.BookId" class="btn btn-primary">Edit</a> 
+                        <a asp-action="Delete" asp-route-id="@item.BookId" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

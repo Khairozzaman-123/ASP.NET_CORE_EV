@@ -1,0 +1,57 @@
+﻿@model work_01.Models.Visitor
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <div class="card card rounded shadow-lg mt-5">
+            <div class="card-header shadow">
+                <h2 class="float-left">Details of @Model.VisitorName</h2>
+                <div class="d-flex justify-content-end">
+                    <a asp-action="Index" asp-controller="Visitors" class="btn btn-info btn-sm rounded shadow-sm">
+                        <i class="fa fa-backward"></i> Back to List
+                    </a>
+                </div>
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.VisitorName)
+                    </dt>
+                    <dd class="col-sm-8">
+                        <strong>@Html.DisplayFor(model => model.VisitorName)</strong>
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.City)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.City.cName)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Phone)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Phone)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.VisitDate)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.VisitDate)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Image)
+                    </dt>
+                    <dd class="col-sm-8">
+                        <img src="/@Model.Image" class="detailImage" width="150" height="150"/>
+                    </dd>
+                </dl>
+            </div>
+            <div class="card-footer">
+                <a asp-action="Edit" asp-controller="Visitors" asp-route-id="@Model.Id" class="btn btn-success shadow btn-sm w-25"><i class="fa fa-pencil"></i> Edit</a>
+            </div>
+        </div>
+    </div>
+</div>

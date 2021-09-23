@@ -1,0 +1,52 @@
+﻿@model IEnumerable<work_01.ViewModels.VisitorsRetriveVm>
+
+
+<table class="table table-hover text-center table-sm mt-2">
+    <thead class="thead-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.VisitorName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VisitDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VisitorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VisitDate)
+                </td>
+                <td>
+                    <img src="@Url.Content(item.Image)" alt="photo of @item.VisitorName" width="50" />
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-controller="Visitors" asp-route-id="@item.Id" class="btn btn-success shadow btn-sm"><i class="fa fa-pencil"></i></a>
+                    <a asp-action="Details" asp-controller="Visitors" asp-route-id="@item.Id" class="btn btn-info shadow btn-sm"><i class="fa fa-eye"></i></a>
+                    <a asp-action="Delete" asp-controller="Visitors" asp-route-id="@item.Id" class="btn btn-danger shadow btn-sm"><i class="fa fa-trash"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

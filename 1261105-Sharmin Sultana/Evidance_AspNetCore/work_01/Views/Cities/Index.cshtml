@@ -1,0 +1,53 @@
+﻿@model IEnumerable<work_01.Models.City>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h2 class="display-4">City List</h2>
+<div class="row">
+    <div class="col">
+        <form asp-controller="Cities" asp-action="Index" method="post" class="d-inline float-left">
+            <div class="input-group col-xl-12">
+                <input type="text" class="form-control" placeholder="Search City" name="usertext" />
+                <div class="input-group-btn">
+                    <button class="btn btn-info" type="submit"><i class="fa fa-search"></i> Search</button>
+                </div>
+            </div>
+        </form>
+        <div class="d-flex justify-content-end">
+            <a asp-action="Create" asp-controller="Cities" class="btn btn-success"><i class="fa fa-plus"></i></a>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+
+        <table class="table table-bordered table-hover text-center table-striped table-sm mt-2">
+            <thead class="thead-dark">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.cName)
+                    </th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.cName)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-controller="Cities" asp-route-id="@item.cId" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>
+                            <a asp-action="Details" asp-controller="Cities" asp-route-id="@item.cId" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
+                            <a asp-action="Delete" asp-controller="Cities" asp-route-id="@item.cId" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

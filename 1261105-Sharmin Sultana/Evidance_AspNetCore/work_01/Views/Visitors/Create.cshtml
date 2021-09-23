@@ -1,0 +1,105 @@
+﻿@model work_01.ViewModels.VisitorsVM
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <div id="panel"></div>
+        <div class="card rounded shadow-lg mt-5">
+            <div class="card-header shadow">
+                <h2 class="float-left">Add New Visitor</h2>
+                <div class="d-flex justify-content-end">
+                    <a asp-action="Index" asp-controller="Visitors" class="btn btn-info btn-sm rounded shadow-sm">
+                        <i class="fa fa-backward"></i> Back to List
+                    </a>
+                </div>
+            </div>
+            <div class="card-body">
+                <form id="frmCreate" asp-action="Create" asp-controller="Visitors" enctype="multipart/form-data"
+                      data-ajax-method="Post"
+                      data-ajax="true"
+                      data-ajax-mode="replace"
+                      data-ajax-update="#panel"
+                      data-ajax-success="success">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group row">
+                        <label asp-for="VisitorName" class="col-form-label col-3"></label>
+                        <div class="col-9">
+                            <input asp-for="VisitorName" data-val="true" class="form-control" />
+                            <span asp-validation-for="VisitorName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="cId" class="col-form-label col-3"></label>
+                        <div class="col-9">
+                            <select asp-for="cId" class="form-control" asp-items="ViewBag.cId">
+                                <option value="">---- Select One City ----</option>
+                            </select>
+                            <span asp-validation-for="cId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="Phone" class="col-form-label col-3"></label>
+                        <div class="col-9">
+                            <input asp-for="Phone" data-val="true" class="form-control" />
+                            <span asp-validation-for="Phone" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="VisitDate" class="col-form-label col-3"></label>
+                        <div class="col-9">
+                            <input asp-for="VisitDate" type="date" data-val="true" class="form-control" />
+                            <span asp-validation-for="VisitDate" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="Image" class="col-form-label col-3"></label>
+                        <div class="col-9">
+                            <input asp-for="Image" type="file" class="form-control" />
+                            <span asp-validation-for="Image" class="text-danger"></span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <div class="form-group row">
+                    <div class="col">
+                        <button type="reset" class="btn btn-warning shadow-sm btn-sm"><i class="fa fa-refresh"></i> Reset</button>
+                        <button type="submit" class="btn btn-success shadow-sm btn-sm" id="btnCreate">
+                            <i class="fa fa-save"></i> Save To Database
+                            <img src="~/Images/20191210151708445.gif" style="display:none" id="progress" />
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/lib/ajax/dist/jquery.unobtrusive-ajax.js"></script>
+    <script>
+        function success() {
+            $("#frmCreate").trigger('reset');
+        }
+    </script>
+    <script>
+        $("#btnCreate").click(function (e) {
+            e.preventDefault();
+            $("#progress").attr("style", "width: 20px; margin-left: 10px; margin-bottom: -5px;display:inline-block");
+            $("#btnCreate").attr("disabled", "disabled")
+            setTimeout(function () {
+                $("#frmCreate").submit();
+                $("#progress").attr("style", "width: 20px; margin-left: 10px; margin-bottom: -5px;display:none")
+                $("#btnCreate").removeAttr("disabled")
+            }, 2000);
+        });
+    </script>
+}
+

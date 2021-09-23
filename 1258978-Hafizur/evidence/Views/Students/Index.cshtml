@@ -1,0 +1,39 @@
+﻿@model IEnumerable<evidence.Models.Student>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<div class="container">
+    <p>
+        <a asp-action="Create" class="btn btn-outline-primary">Create New</a>
+    </p>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Picture</th>
+                <th>Department</th>
+                <th>Admission Date</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.studentName</td>
+                    <td>@item.picturePath</td>
+                    <td>@item.departmentId</td>
+                    <td>@item.admissionDate</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.studentId" class="btn btn-primary btn-sm">Edit</a> |
+                        <a asp-action="Delete" asp-route-id="@item.studentId" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+</div>
+

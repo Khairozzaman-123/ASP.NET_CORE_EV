@@ -1,0 +1,65 @@
+﻿@model evidence.Models.Student
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <div id="panel">
+
+        </div>
+        <form asp-action="Create" asp-controller="Movie" enctype="multipart/form-data" data-ajax-method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#panel" data-ajax-success="success" id="empForm">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="studentName" class="control-label"></label>
+                <input asp-for="studentName" class="form-control" />
+                <span asp-validation-for="studentName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="picturePath" class="control-label"></label>
+                <input asp-for="picturePath" class="form-control" type="file" name="fileobj" />
+                <span asp-validation-for="picturePath" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="departmentId" class="control-label"></label>
+                <select asp-for="departmentId" class="form-control" asp-items="@(new SelectList(ViewBag.Departments,"departmentId","departmentName"))"></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="admissionDate" class="control-label"></label>
+                <input asp-for="admissionDate" class="form-control" />
+                <span asp-validation-for="admissionDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-outline-primary btn-sm" id="btnSave"><i class="fa fa-save"></i> Save</button>
+                <a asp-action="Index" asp-controller="Students" class="btn btn-outline-secondary btn-sm"><i class="fa fa-arrow-circle-o-left"></i> Back</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts{
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#btnSave').click(function () {
+                ValidationForm();
+            })
+        });
+
+        function ValidationForm() {
+            if (!$('#empForm').valid()) {
+                return false;
+            }
+        }
+    </script>
+}

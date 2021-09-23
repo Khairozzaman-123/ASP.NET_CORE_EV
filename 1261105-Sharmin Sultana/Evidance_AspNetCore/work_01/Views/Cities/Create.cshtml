@@ -1,0 +1,49 @@
+﻿@model work_01.Models.City
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2 class="display-4">Add New City</h2>
+<hr />
+
+<div class="row">
+    <div class="col">
+        <div id="panel"></div>
+        <form id="frmCreate" asp-action="Create" asp-controller="Cities"
+              data-ajax-method="Post"
+              data-ajax="true"
+              data-ajax-mode="replace"
+              data-ajax-update="#panel"
+              data-ajax-success="success">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group row">
+                <label asp-for="cName" class="col-form-label col-2">@Html.DisplayNameFor(x => x.cName)</label>
+                <div class="col-4">
+                    <input asp-for="cName" class="form-control" />
+                    <span asp-validation-for="cName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="offset-2 col-4">
+                    <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-save"></i> Save To Database</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-controller="Cities" class="btn btn-info btn-sm"><i class="fa fa-backward"></i> Back to List</a>
+</div>
+@section scripts{
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/lib/ajax/dist/jquery.unobtrusive-ajax.js"></script>
+    <script>
+        function success() {
+            $("#frmCreate").trigger('reset');
+        }
+    </script>
+}

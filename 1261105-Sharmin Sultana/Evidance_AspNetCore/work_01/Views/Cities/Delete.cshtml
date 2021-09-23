@@ -1,0 +1,26 @@
+﻿@model work_01.Models.City
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+
+<h3 class="alert alert-warning">Are you sure you want to delete @Model.cName?</h3>
+<div class="row">
+    <div class="col">
+        <dl class="row border">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.cName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.cName)
+            </dd>
+        </dl>
+
+        <form asp-action="Delete" asp-controller="Cities">
+            <input type="hidden" asp-for="cId" />
+            <button type="submit" class="btn btn-danger btn-sm" ><i class="fa fa-trash"></i> Delete</button>
+            <a asp-action="Index" asp-controller="Cities" class="btn btn-info btn-sm"><i class="fa fa-backward"></i> Back to List</a>
+        </form>
+    </div>
+</div>

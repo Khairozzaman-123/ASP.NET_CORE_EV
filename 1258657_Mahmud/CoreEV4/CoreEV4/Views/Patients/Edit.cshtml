@@ -1,0 +1,107 @@
+﻿@model CoreEV4.ViewModels.PatientMV
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<div class="card card card-default scrollspy" id="validation">
+    <div class="border-radius-10 card card-content col s12 m6 l6 offset-m3 offset-l3 pl-0 pr-0">
+        <h4 class="border-radius-10 header gradient-45deg-indigo-blue padding-5 medium" style="color: rgba(255, 255, 255, 0.901961);margin:0">
+            <span class="">নতুন রোগী এড করুন</span>
+            <a asp-action="Index" class="btn btn-floating btn-medium pink pulse right"><i class="material-icons">arrow_back</i></a>
+        </h4>
+        <form asp-action="Edit" enctype="multipart/form-data" class="pt-8 pb-6 col s12 m10 l10 offset-m1 offset-l1" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="pId" />
+            <div class="col s12">
+                <label asp-for="pName" class="control-label"></label>
+                <input asp-for="pName" class="form-control" />
+                <span asp-validation-for="pName" class="text-danger"></span>
+            </div>
+            <div class="col s12">
+                <label asp-for="pEmail" class="control-label"></label>
+                <input asp-for="pEmail" class="form-control" />
+                <span asp-validation-for="pEmail" class="text-danger"></span>
+            </div>
+            <div class="col s12">
+                <select asp-for="bGroup">
+                    <option value="0">--Blood Group--</option>
+                    <option value="A+">A+ ve</option>
+                    <option value="A-">A- ve</option>
+                    <option value="B+">B+ ve</option>
+                    <option value="B-">B- ve</option>
+                </select>
+                <span asp-validation-for="bGroup" class="text-danger"></span>
+            </div>
+            <div class="col s12">
+                <label asp-for="Dob" class="control-label"></label>
+                <input asp-for="Dob" class="form-control" />
+                <span asp-validation-for="Dob" class="text-danger"></span>
+            </div>
+            <div class="col s12">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="col s12">
+                <div class="row">
+                    <div class="col s12 m8 l8">
+                        <div class="row">
+                            <div class="file-field input-field">
+                                <div class="btn">
+                                    <span>File</span>
+                                    <input asp-for="pImageFile" name="file" id="File">
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text">
+                                </div>
+                                <span asp-validation-for="pImageFile" class="pink-text"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s4 m4 l4">
+                        <img src="~/img/@Model.img" id="imgShow" style=" width: 100%;" />
+                    </div>
+                </div>
+            </div>
+            <div class="col s12">
+                <select asp-for="pStatus">
+                    <option value="0">--Select Status--</option>
+                    <option value="Hospitalized">Hospitalized</option>
+                    <option value="Recovered">Recovered</option>
+                    <option value="Dead">Dead</option>
+                </select>
+                <span asp-validation-for="pStatus" class="text-danger"></span>
+            </div>
+            <div class="col s12">
+                <label asp-for="hId" class="control-label"></label>
+                <select asp-for="hId" class="form-control" asp-items="ViewBag.hId"></select>
+                <span asp-validation-for="hId" class="text-danger"></span>
+            </div>
+            <div class="col s12">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section script {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    <script>
+        $("#File").change(function () {
+            var file = $("input[type=file]").get(0).files[0];
+            if (file) {
+                var reader = new FileReader();
+
+                reader.onload = function () {
+                    $("#imgShow").attr("src", reader.result);
+                    $("#fileName").val(file);
+                }
+                reader.readAsDataURL(file);
+            }
+        })
+    </script>
+}
